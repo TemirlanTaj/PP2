@@ -1,0 +1,21 @@
+git status
+git add "name of the file/ . to add everything"
+git commit -m "commit/change you made"
+git push (to add everything to github repository)
+git log (to see history of the repository)
+git log --oneline (to show every change in one line)
+git log --pretty=format:"%h %ad | %s%d [%an]" --date=short
+--pretty="..." defines the output format.
+%h is the abbreviated hash of the commit.
+%ad is the commit date.
+| is just a visual separator.
+%s is the comment.
+%d commit decorations (e.g. branch heads or tags).
+%an is the name of the author.
+--date=short keeps the date format short and nice.
+git checkout <hash> (to return to the moment when the change was made)
+git switch main (return to the latest version)
+git tag v1 (creating tag to save the version/using tags instead of hash)
+git log main --all (to see all tags)
+git restore "file name" (Use the restore command in order to reset the content of the file)
+git restore --staged "file name"(to restore the file without deleting the changes)
