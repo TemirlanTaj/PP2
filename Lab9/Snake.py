@@ -1,6 +1,5 @@
 import pygame
 import random
-import time
 pygame.init()
 
 width = 600
@@ -19,7 +18,7 @@ colorBlack = (255,255,255)
 font = pygame.font.SysFont("Verdana", 60)
 font_small = pygame.font.SysFont("Verdana", 20)
 
-def draw_grid_walls():
+def draw_grid_walls(): #draw grid and walls
     for i in range(width // cell):
         for j in range(height // cell):
             pygame.draw.rect(screen, color_gray_white[(i + j) % 2 - 1], (i * cell, j * cell, cell, cell))
@@ -32,7 +31,7 @@ def draw_grid_walls():
         elif i == width // cell - 1:
             pygame.draw.line(screen, colorRed, ((i+1) * cell - 1, 0), ((i + 1) * cell - 1, width))
 
-def game_over():
+def game_over(): #text for game over
     font = pygame.font.SysFont("Verdana", 60)
     game_over_text = font.render("Game Over", True, colorRed)
     screen.blit(game_over_text, (145, 250))
@@ -40,19 +39,19 @@ def game_over():
     snake.dx = 0
     snake.dy = 0
 
-class Point:
+class Point: #class for single point
     def __init__(self, x, y):
         self.x = x
         self.y = y
 
-class Snake:
+class Snake: #class for snake
     def __init__(self):
         self.body = [Point(10,10), Point(10,11), Point(10,12)]
         self.dx = 0
         self.dy = -1
         self.level = 1
 
-    def check_collision_food(self, food, level):
+    def check_collision_food(self, food, level): #checks for collsion with food and gives random weight
         head = self.body[0]
         global food_count
         global FPS
@@ -67,15 +66,13 @@ class Snake:
                 level += 1
                 foods.append(Food())
 
-
-
-    def drawSnake(self):
+    def drawSnake(self): #draw snake
         head = self.body[0]
         pygame.draw.rect(screen, colorRed, (head.x * cell, head.y * cell, cell, cell))
         for i in range(1, len(self.body)):
             pygame.draw.rect(screen, colorYellow, (self.body[i].x * cell, self.body[i].y * cell, cell, cell))
 
-    def move(self):
+    def move(self): #always moving
         for part in range(len(self.body) - 1, 0, -1):
             self.body[part].x = self.body[part - 1].x
             self.body[part].y = self.body[part - 1].y
@@ -101,7 +98,7 @@ class Snake:
 
 class Food:
     def __init__(self):
-        self.collection = [Point(random.randint(0, width // cell - 1), random.randint(0, height // cell - 1))]
+        self.collection = [Point(random.randint(0, width // cell - 1), random.randint(0, height // cell - 1))] #list for multiple food
         self.weight = random.randint(1,3)
 
     def draw(self):
