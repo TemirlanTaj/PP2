@@ -58,8 +58,6 @@ while running:
                     pygame.draw.circle(screen, current_color, center, radius, THICKNESS)
                 elif draw_mode == "line":
                     pygame.draw.line(screen, current_color, (prev_x, prev_y), (curr_x, curr_y), THICKNESS)
-                elif draw_mode == "erase":
-                    pygame.draw.circle(screen, colorWHITE, (curr_x, curr_y), THICKNESS)
 
         if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
             LMBpressed = False
@@ -83,11 +81,11 @@ while running:
             if event.key == pygame.K_r:
                 draw_mode = "rectangle"
             if event.key == pygame.K_c:
-                screen.fill((0, 0, 0))
+                draw_mode = "cirlce"
             if event.key == pygame.K_l:
                 draw_mode = "line"
             if event.key == pygame.K_e:
-                draw_mode = "erase"
+                screen.fill((0,0,0))
             if event.key == pygame.K_1:
                 current_color = colors["red"]
             if event.key == pygame.K_2:
